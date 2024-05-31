@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateActivity">
+
+    <TextView
+        android:id="@+id/tv_postTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:text="Post Type"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/rgrp_LostFound"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/rgrp_LostFound"
+        app:layout_constraintStart_toEndOf="@+id/tv_postTypeLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_postTypeLabel"
+        app:layout_constraintTop_toTopOf="@+id/tv_postTypeLabel"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/rbtn_lost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Lost"
+            android:textSize="20sp"
+            android:checked="true"
+            app:layout_constraintEnd_toStartOf="@+id/rbtn_found"
+            app:layout_constraintTop_toTopOf="@+id/rbtn_found" />
+
+        <RadioButton
+            android:id="@+id/rbtn_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="8dp"
+            android:text="Found"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/rbtn_lost"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_itemDetailsLabelHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="ITEM DETAILS"
+        android:fontFamily="@font/provicali"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_postTypeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tv_postTypeLabel" />
+
+    <TextView
+        android:id="@+id/tv_itemNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="ITEM NAME"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_itemDetailsLabelHeading"
+        app:layout_constraintTop_toBottomOf="@+id/tv_itemDetailsLabelHeading" />
+
+    <EditText
+        android:id="@+id/et_itemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/rgrp_LostFound"
+        app:layout_constraintStart_toStartOf="@+id/tv_itemNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tv_itemNameLabel" />
+
+    <TextView
+        android:id="@+id/tv_itemDescriptionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="DESCRIPTION"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/et_itemName"
+        app:layout_constraintTop_toBottomOf="@+id/et_itemName" />
+
+    <EditText
+        android:id="@+id/et_itemDescription"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/et_itemName"
+        app:layout_constraintStart_toStartOf="@+id/tv_itemDescriptionLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tv_itemDescriptionLabel" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/black"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_save"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="20dp"
+        android:text="Save"
+        android:backgroundTint="#6200FF"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+    <EditText
+        android:id="@+id/et_userName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/tv_userPhoneLabel"
+        app:layout_constraintEnd_toEndOf="@+id/et_userPhone"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_userPhone" />
+
+    <TextView
+        android:id="@+id/tv_userPhoneLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="Phoe Number"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/et_userPhone"
+        app:layout_constraintStart_toStartOf="@+id/et_userPhone" />
+
+    <EditText
+        android:id="@+id/et_userPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/btn_save"
+        app:layout_constraintEnd_toEndOf="@+id/et_itemDescription"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_itemDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USER DETAILS"
+        app:layout_constraintBottom_toTopOf="@id/tv_userNameLabel"
+        app:layout_constraintStart_toStartOf="@+id/et_userName"
+        android:fontFamily="@font/provicali"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tv_userNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="User Name"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/et_userName"
+        app:layout_constraintStart_toStartOf="@+id/et_userName" />
+
+    <Button
+        android:id="@+id/btn_currentLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USE CURRENT LOCATION"
+        android:backgroundTint="#6200FF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_itemLocation" />
+
+    <TextView
+        android:id="@+id/tv_itemFoundDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DATE"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/et_itemFoundDate"
+        app:layout_constraintTop_toBottomOf="@+id/et_itemDescription" />
+
+    <EditText
+        android:id="@+id/et_itemLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/et_userName"
+        app:layout_constraintStart_toStartOf="@+id/et_itemDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tv_itemLocationLabel" />
+
+    <TextView
+        android:id="@+id/tv_itemLocationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOCATION"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/et_itemLocation"
+        app:layout_constraintTop_toBottomOf="@+id/et_itemFoundDate" />
+
+    <EditText
+        android:id="@+id/et_itemFoundDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        app:layout_constraintEnd_toEndOf="@+id/et_itemName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_itemLocationLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tv_itemFoundDateLabel" />
+
+    <!--    <fragment-->
+    <!--        android:id="@+id/fr_placeSearch"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/et_userName"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/tv_userDetailsLabelHeading"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_itemLocationLabel" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
