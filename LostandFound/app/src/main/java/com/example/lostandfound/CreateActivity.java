@@ -31,7 +31,7 @@ public class CreateActivity extends AppCompatActivity {
     EditText et_itemName, et_itemDescription, et_itemFoundDate, et_itemLocation, et_userName, et_userPhone;
     RadioButton rbtn_lost, rbtn_found;
 
-    // Global variables
+    // VARIABLES IMPLEMENTS
     LocationManager locationManager;
     LocationListener locationListener;
     LatLng currentLocation = null;
