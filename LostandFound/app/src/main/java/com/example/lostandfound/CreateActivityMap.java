@@ -39,15 +39,15 @@ public class CreateActivityMap extends FragmentActivity implements OnMapReadyCal
         binding = ActivityCreateMapBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Find our submit buton
+        // SUBMIT BUTTON AND FUNCTIONALITY
         btn_selectLocation = findViewById(R.id.btn_selectLocation);
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        // SUPPORT MAP FRAGEMENT FUNCTIONALITY
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        // Set up place search box
+        // SEARCH BOX USING MY GOOGLE MAP API
         Places.initialize(getApplicationContext(), "AIzaSyBU11jPtrDnak_YYmWjvSNCv0zPjX_yAow");
         AutocompleteSupportFragment autocompleteSupportFragment =
                 (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.fr_placeSearch);
@@ -56,7 +56,6 @@ public class CreateActivityMap extends FragmentActivity implements OnMapReadyCal
         autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onError(@NonNull Status status) {
-                // TO DO
             }
 
             @Override
@@ -86,7 +85,7 @@ public class CreateActivityMap extends FragmentActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // HERE IM USING THE DEFAULT LOCATION AS THE DEAKIN 
+        // HERE IM USING THE DEFAULT LOCATION DEAKIN
         LatLng deakin = new LatLng(-37.84739654797611, 145.11492364027188);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(deakin, 14));
     }

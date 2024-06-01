@@ -8,13 +8,10 @@ import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    // References to screen elements
+    // ELEMENTS PASSING
     Button btn_createNew, btn_showAll, btn_showAllOnMap;
 
     @Override
@@ -23,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Screen elements
+        // ELEMENTS SETUP
         btn_createNew = findViewById(R.id.btn_createNew);
         btn_showAll = findViewById(R.id.btn_showAll);
         btn_showAllOnMap = findViewById(R.id.btn_showAllOnMap);
 
-        // Handle button clicks
+        // BUTTON ELEMENTS FUNCTIONALITY SETUP
         btn_createNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -3,7 +3,6 @@ package com.example.lostandfound;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,7 +26,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class CreateActivity extends AppCompatActivity {
 
-    // References for screen elements
+    // ELEMENTS AND FUNCTIONS
     Button btn_back, btn_save, btn_currentLocation;
     EditText et_itemName, et_itemDescription, et_itemFoundDate, et_itemLocation, et_userName, et_userPhone;
     RadioButton rbtn_lost, rbtn_found;
@@ -53,7 +52,7 @@ public class CreateActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_create);
 
-        // Find screen elements
+        // ASSIGN ELEMENTS AND FUNCTIONS
         btn_back = findViewById(R.id.btn_back);
         btn_save = findViewById(R.id.btn_save);
         btn_currentLocation = findViewById(R.id.btn_currentLocation);
@@ -66,7 +65,7 @@ public class CreateActivity extends AppCompatActivity {
         rbtn_lost = findViewById(R.id.rbtn_lost);
         rbtn_found = findViewById(R.id.rbtn_found);
 
-        // Create location manager
+        // LOCATION MANAGER
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
@@ -75,32 +74,27 @@ public class CreateActivity extends AppCompatActivity {
             }
         };
 
-        // Set up functionality for selecting location on map
+        // SELECTING LOCATION ON MAP USING LANG AND LONG
         et_itemLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // When the user clicks into the location text box, bring up a Google Maps activity
                 Intent intent = new Intent(CreateActivity.this, CreateActivityMap.class);
-                // When we return from the Google Maps activity to this one, grab the longitude and
-                // latitude from it with the myActivityResultLauncher callback.
                 myActivityResultLauncher.launch(intent);
             }
         });
 
-        // Set up functionality for selecting current location
+        // SELECTING CURRENT LOCATION
         btn_currentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // If we have a current location
                 if (currentLocation != null) {
-                    // Populate location field with latitude and longitude
                     String currentLocationString = Double.toString(currentLocation.latitude) + "," + Double.toString(currentLocation.longitude);
                     et_itemLocation.setText(currentLocationString);
                 }
             }
         });
 
-        // When the user clicks save, perform field validation and save to database
+        // SAVE AND EXPORT TO DATA LIST
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,22 +110,21 @@ public class CreateActivity extends AppCompatActivity {
                 String postType;
                 if (rbtn_found.isChecked()) {
                     postType = "Found";
-                } else { // Lost is checked by default in the XML, so we know it's one of the two
+                } else {
                     postType = "Lost";
                 }
 
-                // Strings for matching due date and phone number fields
+                // MATCHING THE PHONE NUMBER FORMAT
                 String dateMatchRegex = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$";
                 String phoneMatchRegex = "^(?:\\+?(61))? ?(?:\\((?=.*\\)))?(0?[2-57-8])\\)? ?(\\d\\d(?:[- ](?=\\d{3})|(?!\\d\\d[- ]?\\d[- ]))\\d\\d[- ]?\\d[- ]?\\d{3})$"; // source: https://regex101.com/r/dkFASs/6
 
-                // Validate fields aren't blank and valid
                 if (itemName.equals("")) {
                     Toast.makeText(CreateActivity.this, "Item name is mandatory", Toast.LENGTH_SHORT).show();
                 }
                 else if (itemFoundDate.equals("")) {
                     Toast.makeText(CreateActivity.this, "Please enter a date the item was lost or found", Toast.LENGTH_SHORT).show();
                 }
-                // Check that a valid found date has been entered
+                // DATE FORMAT
                 else if (!itemFoundDate.matches(dateMatchRegex)) {
                     Toast.makeText(CreateActivity.this, "Lost/found date must be in format yyyy-mm-dd", Toast.LENGTH_SHORT).show();
                 }
@@ -147,7 +140,8 @@ public class CreateActivity extends AppCompatActivity {
                 else if (!userPhone.matches(phoneMatchRegex)) {
                     Toast.makeText(CreateActivity.this, "Please enter a valid Australian phone number with area code", Toast.LENGTH_SHORT).show();
                 }
-                // If everything was OK, add the post to the database
+
+                // VALIDATE AND PASS
                 else {
                     DatabaseHelper dbHelper = new DatabaseHelper(CreateActivity.this);
                     LostAndFoundModel = new LostAndFoundModel(postType, itemName, itemDescription, itemFoundDate, itemLocation, userName, userPhone);
@@ -161,7 +155,13 @@ public class CreateActivity extends AppCompatActivity {
             }
         });
 
-        // If they click back instead, take them back to the main activity screen without saving
+
+
+
+
+
+
+        //BACK BUTTON AND FUNCTIONS
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,7 +171,7 @@ public class CreateActivity extends AppCompatActivity {
             }
         });
 
-        // Ask for location permission, if needed
+        // PERMISSION FOR CURRENT LOCATION AT THE START
         if (ActivityCompat.checkSelfPermission(CreateActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CreateActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(CreateActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         } else {
@@ -196,18 +196,3 @@ public class CreateActivity extends AppCompatActivity {
             }
     );
 }
-
-/***
- * 10:43 PM 23/05/2024 to implement tomorrow
- * -----------------------------------------
- * / View all
- * 	/ Map activity
- * 	/ Get all from database
- * 	/ Iterate over their locations, parsing each string as LatLng
- * 	/ Place a pin on the map for each.
- * 		- Make each clickable?
- * / View item on map
- * 	/ When location text field is clicked on, launch ViewSingle activity
- * 	/ Pass location string to new ViewSingle intent
- * - Current location functionality
- */

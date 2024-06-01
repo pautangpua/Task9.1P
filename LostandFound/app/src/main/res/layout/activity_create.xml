@@ -22,10 +22,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
+        android:id="@+id/rgrp_LostFound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/rgrp_LostFound"
         app:layout_constraintStart_toEndOf="@+id/tv_postTypeLabel"
         app:layout_constraintBottom_toBottomOf="@+id/tv_postTypeLabel"
         app:layout_constraintTop_toTopOf="@+id/tv_postTypeLabel"
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="ITEM NAME"
+        android:text="Item Name"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/tv_itemDetailsLabelHeading"
         app:layout_constraintTop_toBottomOf="@+id/tv_itemDetailsLabelHeading" />
@@ -93,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="DESCRIPTION"
+        android:text="Description"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/et_itemName"
         app:layout_constraintTop_toBottomOf="@+id/et_itemName" />
@@ -152,7 +152,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="Phoe Number"
+        android:text="Phone Number"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/et_userPhone"
         app:layout_constraintStart_toStartOf="@+id/et_userPhone" />
@@ -203,7 +203,7 @@
         android:id="@+id/tv_itemFoundDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DATE"
+        android:text="Date"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/et_itemFoundDate"
         app:layout_constraintTop_toBottomOf="@+id/et_itemDescription" />
@@ -223,7 +223,7 @@
         android:id="@+id/tv_itemLocationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOCATION"
+        android:text="Location"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/et_itemLocation"
         app:layout_constraintTop_toBottomOf="@+id/et_itemFoundDate" />

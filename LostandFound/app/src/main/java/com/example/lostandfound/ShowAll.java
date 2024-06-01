@@ -12,13 +12,10 @@ import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class ShowAll extends AppCompatActivity {
 
-    // References to screen elements
+    // ELEMENTS ADDED
     Button btn_back;
     ListView lv_lostAndFound;
     ArrayAdapter postArrayAdapter;
@@ -30,17 +27,17 @@ public class ShowAll extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_all);
 
-        // Screen elements
+        // ELEMENTS SETUP
         btn_back = findViewById(R.id.btn_back);
         lv_lostAndFound = findViewById(R.id.lv_lostAndFound);
 
-        // Get our items from database
+        // GET DATA FROM DATABASE
         DatabaseHelper dbHelper = new DatabaseHelper(ShowAll.this);
 
-        // Show list items
+        // OUTPUT LIST
         showPosts(dbHelper);
 
-        // Handle clicks on list items
+        // CLICK LIST FUNCTIONALITY
         lv_lostAndFound.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -51,7 +48,7 @@ public class ShowAll extends AppCompatActivity {
             }
         });
 
-        // Back button functionality
+        // BACK BUTTON FUNCTIONALITY
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

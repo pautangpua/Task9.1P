@@ -35,20 +35,20 @@ public class ShowActivityMap extends AppCompatActivity implements OnMapReadyCall
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_map);
 
-        // Create our map fragment in our activity
+        // CREATE MAP FRAGMENT TO ACTIVITY
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
-        // Get the item ID from the intent
+        // GET ITEM ID FROM INTENT
         Intent intent = getIntent();
         postId = intent.getIntExtra("ID", -1);
 
-        // Get the post from the ID
+        // GET THE POST FROM ID
         dbHelper = new DatabaseHelper(ShowActivityMap.this);
         item = dbHelper.getPostById(postId);
 
         mapFragment.getMapAsync(this);
 
-        // Provide a back button for users
+        // BACK BUTTON AND FUNCTIONALITY
         btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +60,7 @@ public class ShowActivityMap extends AppCompatActivity implements OnMapReadyCall
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        // Create our map
+        // MAP CREATION
         mMap = googleMap;
 
         String[] latlong = item.getItemFoundLocation().split(",");
@@ -68,13 +68,13 @@ public class ShowActivityMap extends AppCompatActivity implements OnMapReadyCall
         double itemLongitude = Double.parseDouble(latlong[1]);
         LatLng itemLocation = new LatLng(itemLatitude, itemLongitude);
 
-        // Build our title for the marker, made up of its ID and its name
+        // BUILD MARKER ON MAP WITH GET ID AND NAME
         String itemTitle = item.getId() + ": " + item.getItemName();
 
-        // Add the marker to the map
+        // ADD MARKER TO THE NAME
         Marker itemMarker = mMap.addMarker(new MarkerOptions().position(itemLocation).title(itemTitle));
 
-        // And zoom into it
+        // ZOOM ABILITY
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(itemLocation, 14));
     }
 }

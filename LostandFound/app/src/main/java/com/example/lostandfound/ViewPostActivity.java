@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ViewPostActivity extends AppCompatActivity {
 
-    // References to screen elements
+    // ELEMENTS SETUP
     TextView tv_postTypeLabel, tv_itemName, tv_timeSinceLostOrFound, tv_locationFound, tv_itemDescription, tv_userName, tv_userPhone, tv_userDetailsHeading;
     Button btn_back, btn_delete;
     int postId;
@@ -22,7 +22,7 @@ public class ViewPostActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_view_post);
 
-        // Find our screen elements
+        // ELEMENTS SETUP
         tv_postTypeLabel = findViewById(R.id.tv_postTypeLabel);
         tv_itemName = findViewById(R.id.tv_itemName);
         tv_timeSinceLostOrFound = findViewById(R.id.tv_timeSinceLostOrFound);
@@ -34,13 +34,13 @@ public class ViewPostActivity extends AppCompatActivity {
         btn_back = findViewById(R.id.btn_back);
         btn_delete = findViewById(R.id.btn_delete);
 
-        // Pull the post from the database
+        // DATABASE GET POST
         Intent intent = getIntent();
         postId = intent.getIntExtra("ID", -1);
         DatabaseHelper dbHelper = new DatabaseHelper(ViewPostActivity.this);
         LostAndFoundModel LostAndFoundModel = dbHelper.getPostById(postId);
 
-        // Populate our fields with details from the post
+        // COMPLETE ELEMETNS AND FIELDS WITH DATA
         tv_postTypeLabel.setText(LostAndFoundModel.getPostType() + ":");
         tv_itemName.setText(LostAndFoundModel.getItemName());
         tv_timeSinceLostOrFound.setText(LostAndFoundModel.getItemFoundDate());
@@ -50,7 +50,7 @@ public class ViewPostActivity extends AppCompatActivity {
         tv_userName.setText(LostAndFoundModel.getFinderName());
         tv_userPhone.setText(LostAndFoundModel.getFinderPhone());
 
-        // Make the location clickable, to show it on a map
+        // LOCATION LISTENER
         tv_locationFound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +60,7 @@ public class ViewPostActivity extends AppCompatActivity {
             }
         });
 
-        // Set functionality for our buttons
+        // BUTTON FUNCTIONALITY
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

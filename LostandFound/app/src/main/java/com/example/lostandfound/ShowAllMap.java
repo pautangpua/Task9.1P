@@ -36,16 +36,16 @@ public class ShowAllMap extends AppCompatActivity implements OnMapReadyCallback 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_all_map);
 
-        // Create our map fragment in our activity
+        // CREATE MAP FRAGMENT IN ACTIVITY
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
-        // Get our items from the database
+        // GET DATA FROM DATABASE
         dbHelper = new DatabaseHelper(ShowAllMap.this);
         items = dbHelper.getAll();;
 
         mapFragment.getMapAsync(this);
 
-        // Provide a back button for users
+        // BACK BUTTON FUNCTIONALITY
         btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,7 @@ public class ShowAllMap extends AppCompatActivity implements OnMapReadyCallback 
             }
         });
 
-        // If user selects item on map and clicks 'confirm', take them to that item
+        // SELECT AND CONFIRM ON MAP
         btn_select = findViewById(R.id.btn_select);
         btn_select.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,28 +72,27 @@ public class ShowAllMap extends AppCompatActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
 
-        // Create our map
+        // MAP CREATION
         mMap = googleMap;
 
-        // Create a list we can add markers to, as well as making them visible on the map
+        // CREATE ARRAY LIST FOR MAP
         List<Marker> markers = new ArrayList<Marker>();
 
-        // Iterate through our database items and make map markers out of them
+        // DATABASE DATA ARE PLACED INTO MARKER
         for (LostAndFoundModel item : items) {
-            // First, parse our location string to convert it to a LagLng object
             String[] latlong = item.getItemFoundLocation().split(",");
             double itemLatitude = Double.parseDouble(latlong[0]);
             double itemLongitude = Double.parseDouble(latlong[1]);
             LatLng itemLocation = new LatLng(itemLatitude, itemLongitude);
 
-            // Create a string for the title of our item
+            // GET DATABASE WITH ID AND NAME
             String itemTitle = item.getId() + ": " + item.getItemName();
 
-            // And add the marker to the map
+            // ADD MARKER TO MAP
             Marker itemMarker = mMap.addMarker(new MarkerOptions().position(itemLocation).title(itemTitle));
             markers.add(itemMarker);
 
-            // Set an on-click listener to each marker, to store that ID in a global variable if selected
+            // SIMPLE ON CLICK LISTENER FOR MARKER
             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(@NonNull Marker marker) {
@@ -103,7 +102,7 @@ public class ShowAllMap extends AppCompatActivity implements OnMapReadyCallback 
             });
         }
 
-        // Now, use our list of markers to set an appropriate zoom level to make them all visible.
+        // ZOOM ABILITY
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         for (Marker marker : markers) {
             builder.include(marker.getPosition());

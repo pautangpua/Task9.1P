@@ -54,13 +54,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<LostAndFoundModel> getAll() {
         List<LostAndFoundModel> returnList = new ArrayList<>();
 
-        // Get all records from DB
+        // DATABASE PASS
         String queryString = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
         LostAndFoundModel LostAndFoundModel;
 
-        // If there are any records, add them to our list
+        // PASS AND ADD THEM TO MY LIST
         if (cursor.moveToFirst()) {
             do {
                 int postId = cursor.getInt(0);
@@ -88,7 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
         LostAndFoundModel LostAndFoundModel;
 
-        // If a record was returned, create a post object out of it
+        // CREATE THE POST FROM THE RECORDS
         if (cursor.moveToFirst()) {
             int postId = cursor.getInt(0);
             String postType = cursor.getString(1);
@@ -113,6 +113,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + id;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
-        return cursor.moveToFirst(); // returns true if a record was deleted and returned from db.rawQuery; false if nothing was returned.
+        return cursor.moveToFirst();
     }
 }
